@@ -81,6 +81,10 @@ jsPDF.API.autoTableAddPageContent = function (hook) {
     }
 };
 
+jsPDF.API.resetCursor = function () {
+  cursor = {};
+};
+
 /**
  * Parses an html table
  *
@@ -90,7 +94,7 @@ jsPDF.API.autoTableAddPageContent = function (hook) {
  */
 jsPDF.API.autoTableHtmlToJson = function (tableElem, includeHiddenElements) {
     includeHiddenElements = includeHiddenElements || false;
-    
+
     var columns = {}, rows = [];
 
     var header = tableElem.rows[0];
@@ -379,12 +383,12 @@ function distributeWidth(dynamicColumns, staticWidth, dynamicColumnsContentWidth
             break;
         } else {
             col.width = col.contentWidth + extraWidth * ratio;
-        } 
+        }
     }
 }
 
 function addPage() {
-    // Add user content just before adding new page ensure it will 
+    // Add user content just before adding new page ensure it will
     // be drawn above other things on the page
     settings.addPageContent(hooksData());
     Config.applyStyles(Config.getUserStyles());
