@@ -32,7 +32,7 @@ function build(dist) {
         var newVersionStr = "cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/" + newVersion + "/jspdf.plugin.autotable.js";
         readme = readme.replace(/cdnjs\.cloudflare\.com\/ajax\/libs\/jspdf-autotable\/.*\/jspdf\.plugin\.autotable\.js/, newVersionStr);
         fs.writeFileSync('./README.md', readme);
-        
+
         var banner = '/** \n' +
         ' * jsPDF AutoTable plugin v' + newVersion + '\n' +
         ' * Copyright (c) 2014 Simon Bengtsson, https://github.com/simonbengtsson/jsPDF-AutoTable \n' +
@@ -42,7 +42,7 @@ function build(dist) {
         ' * \n' +
         ' * @preserve \n' +
         ' */';
-        
+
         var code = bundle.generate({format: 'umd', banner: banner}).code;
         if (dist) {
             var minified = uglify.minify(code, {fromString: true, output: {comments: /@preserve|@license/i}}).code;
